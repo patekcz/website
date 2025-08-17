@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tagy pro sociální sítě -->
+    <meta property="og:title" content="zpatkyvpatky.xyz">
+    <meta property="og:description" content="patekcz website">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zpatkyvpatky.xyz">
+    <meta property="og:image" content="https://zpatkyvpatky.xyz/icons/favicon.svg">
+    <!-- Meta tagy specifické pro Discord -->
+    <meta name="theme-color" content="#ffffff">
+    <meta name="twitter:card" content="summary">
+    
+    <!-- Google Fonts: Space Mono a Anton -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono&display=swap" rel="stylesheet">
+
+    <title>zpatkyvpatky.xyz</title>
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #2b2b2b;
+      }
+      .page-container {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #121212;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .pages-wrapper {
+        display: flex;
+        height: 100%;
+        gap: 10px;
+      }
+      .page {
+        width: calc(100vw - 20px);
+        height: 100%;
+        flex-shrink: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .black-area {
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(19, 19, 19, 0.2);
+        position: relative;
+        user-select: none;
+        overflow: hidden;
+      }
+      .social-links {
+        position: fixed;
+        display: flex;
+        gap: 20px;
+        pointer-events: auto;
+        z-index: 50;
+        top: 30px;
+        right: 30px;
+      }
+      .social-links a {
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        line-height: normal;
+        font-weight: 400;
+        font-style: normal;
+        font-synthesis: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        letter-spacing: 1px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #E8E6E3;
+        transition: color 0.2s ease, text-shadow 0.3s ease;
+      }
+      .social-links a:hover {
+        color: #ff6500;
+      }
+      .list-container {
+        position: absolute;
+        left: 40px;
+        bottom: 40px;
+        display: flex;
+        gap: 140px;
+      }
+      .list-column {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .list-item {
+        display: flex;
+        justify-content: space-between;
+        min-width: 120px;
+        align-items: center;
+        gap: 20px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        text-decoration: none;
+      }
+      .list-item:hover {
+        transform: scale(1.03);
+      }
+      .list-item:hover .item-name {
+        color: #ff6500;
+      }
+      .item-name {
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 400;
+        font-style: normal;
+        font-synthesis: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+      .item-lore {
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: right;
+        letter-spacing: 0.3px;
+        min-width: 45px;
+        white-space: nowrap;
+      }
+      /* Logo styly */
+      .logo-container {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        display: flex;
+        flex-direction: column;
+      }
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        align-items: flex-start;
+      }
+      .yourbana {
+        font-family: 'Anton', sans-serif;
+        font-size: 180px;
+        color: #ff0000;
+        font-weight: 400;
+        font-style: normal;
+        font-synthesis: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        z-index: 1;
+        line-height: 0.9;
+        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      .bottom-row {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-top: -30px;
+      }
+      .v-overlap {
+        font-family: 'Anton', sans-serif;
+        color: #fff;
+        position: relative;
+        z-index: 2;
+        font-size: 280px;
+        font-weight: 400;
+        text-transform: uppercase;
+        line-height: 0.8;
+        margin-right: 20px;
+        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+      }
+      .twentyfive {
+        font-family: 'Anton', sans-serif;
+        font-size: 150px;
+        color: #ff6500;
+        font-weight: 400;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        position: relative;
+        z-index: 1;
+        align-self: flex-end;
+        line-height: 0.8;
+        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+        padding-bottom: 10px;
+      }
+      /* Animace */
+      .fade-in {
+        animation: fadeIn 0.8s ease forwards;
+        opacity: 0;
+      }
+      .slide-in {
+        animation: slideIn 0.6s ease forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+    <script>
+      // Zákaz kontextového menu
+      document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('contextmenu', function (e) {
+          e.preventDefault();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="social-links right-links fade-in">
+        <a href="https://ko-fi.com/patek_cz" target="_blank">Support</a>
+        <a href="https://modrinth.com/user/patekcz" target="_blank">Morinth</a>
+        <a href="https://github.com/patekcz" target="_blank">GitHub</a>
+        <a href="https://discord.gg/uzu5wWrWNH" target="_blank">Discord</a>
+      </div>
+      <div class="pages-wrapper" style="transform: translateX(0%)">
+        <div class="page">
+          <div class="black-area">
+            <div class="logo-container">
+              <div class="logo-text">
+                <div class="yourbana logo-animation">ZPATKY</div>
+                <div class="bottom-row">
+                  <div class="v-overlap v-animation">v</div>
+                  <div class="twentyfive logo-animation-delay">PATKY</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
