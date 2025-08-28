@@ -2,14 +2,20 @@
 <html lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLHFD9CC6K"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-BLHFD9CC6K');
+      // Inicializace Google Analytics s výchozím odmítnutím cookies
+      gtag('config', 'G-BLHFD9CC6K', {
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        ad_storage: 'denied',
+        analytics_storage: 'denied'
+      });
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLHFD9CC6K"></script>
     <meta charset="UTF-8">
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -255,12 +261,155 @@
           transform: translateY(0);
         }
       }
+      /* Cookie lišta */
+      .cookie-banner {
+        width: 280px;
+        height: fit-content;
+        background-color: #000;
+        border-radius: 10px;
+        border: 1px solid #333;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 15px;
+        gap: 10px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        font-family: 'Space Mono', monospace;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.4s ease;
+      }
+      .cookie-banner.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .cookie-heading {
+        color: #fff;
+        font-weight: 600;
+        font-size: 12px;
+        margin: 0;
+      }
+      .cookie-text {
+        font-size: 11px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+        line-height: 1.4;
+      }
+      .button-wrapper {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .cookie-button {
+        width: 50%;
+        padding: 6px 0;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Space Mono', monospace;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.2s ease;
+      }
+      .accept {
+        background-color: #ff6500;
+        color: #000;
+      }
+      .reject {
+        background-color: #333;
+        color: #fff;
+      }
+      .accept:hover {
+        background-color: #e55a00;
+      }
+      .reject:hover {
+        background-color: #444;
+      }
+      .exit-button {
+        position: absolute;
+        top: 17px;
+        right: 17px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .exit-button:hover {
+        background-color: #333;
+      }
+      .svgIconCross {
+        height: 10px;
+      }
     </style>
     <script>
       // Zákaz kontextového menu
       document.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('contextmenu', function (e) {
           e.preventDefault();
+        });
+        
+        // Cookie banner funkcionalita
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptButton = document.getElementById('accept-cookies');
+        const rejectButton = document.getElementById('reject-cookies');
+        const exitButton = document.getElementById('exit-cookies');
+        
+        // Zkontroluj, zda už byl souhlas udělen
+        if (!localStorage.getItem('consentGranted')) {
+          setTimeout(() => {
+            cookieBanner.classList.add('show');
+          }, 1000);
+        } else {
+          // Pokud už byl souhlas udělen, povol Google Analytics
+          function gtag() { dataLayer.push(arguments); }
+          gtag('consent', 'update', {
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            ad_storage: 'granted',
+            analytics_storage: 'granted'
+          });
+        }
+        
+        function hideBanner() {
+          cookieBanner.classList.remove('show');
+        }
+        
+        acceptButton.addEventListener('click', function() {
+          localStorage.setItem('consentGranted', 'true');
+          hideBanner();
+          
+          function gtag() { dataLayer.push(arguments); }
+          gtag('consent', 'update', {
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            ad_storage: 'granted',
+            analytics_storage: 'granted'
+          });
+        });
+        
+        rejectButton.addEventListener('click', function() {
+          localStorage.setItem('consentGranted', 'false');
+          hideBanner();
+        });
+        
+        exitButton.addEventListener('click', function() {
+          hideBanner();
         });
       });
     </script>
@@ -360,6 +509,39 @@
           </div>
         </div>
       </div>
+    </div>
+    
+    <!-- Cookie banner -->
+    <div id="cookie-banner" class="cookie-banner">
+      <p class="cookie-heading">Cookie Policy</p>
+      <p class="cookie-text">
+        This website uses cookies for analytics. By continuing, you agree to their use.
+      </p>
+      <div class="button-wrapper">
+        <button id="accept-cookies" class="accept cookie-button">Accept</button>
+        <button id="reject-cookies" class="reject cookie-button">Reject</button>
+      </div>
+      <button class="exit-button" id="exit-cookies">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 162 162"
+          class="svgIconCross"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-width="17"
+            stroke="white"
+            d="M9.01074 8.98926L153.021 153"
+          ></path>
+          <path
+            stroke-linecap="round"
+            stroke-width="17"
+            stroke="white"
+            d="M9.01074 153L153.021 8.98926"
+          ></path>
+        </svg>
+      </button>
     </div>
   </body>
 </html>
