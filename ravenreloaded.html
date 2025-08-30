@@ -675,6 +675,70 @@
         margin-top: 700px;
        
       }
+      
+      /* Navigační indikátor pro více stránek */
+      .page-indicator {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        z-index: 10;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .page-indicator:hover {
+        transform: translateX(-5px);
+      }
+      
+      .page-number {
+        font-family: 'Space Mono', monospace;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      
+      .page-number .current {
+        color: #8B5CF6;
+        font-weight: 700;
+      }
+      
+      .page-number .total {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      
+      .page-arrow {
+        width: 30px;
+        height: 2px;
+        background: linear-gradient(90deg, #8B5CF6 0%, rgba(139, 92, 246, 0.3) 100%);
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .page-arrow::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: -3px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid #8B5CF6;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        transition: all 0.3s ease;
+      }
+      
+      .page-indicator:hover .page-arrow {
+        width: 40px;
+        background: linear-gradient(90deg, #8B5CF6 0%, rgba(139, 92, 246, 0.6) 100%);
+      }
+      
+      .page-indicator:hover .page-arrow::after {
+        border-left-color: #8B5CF6;
+      }
     </style>
     <script>
       // Zákaz kontextového menu
@@ -704,6 +768,19 @@
           navButtons.forEach((btn, index) => {
             btn.classList.toggle('active', index === pageIndex);
           });
+          
+          // Aktualizace page indikátoru
+          updatePageIndicator();
+        }
+        
+        function updatePageIndicator() {
+          const pageIndicator = document.querySelector('.page-indicator');
+          if (pageIndicator) {
+            const currentSpan = pageIndicator.querySelector('.current');
+            if (currentSpan) {
+              currentSpan.textContent = currentPage + 1;
+            }
+          }
         }
         
         // Event listeners pro navigační tlačítka
@@ -871,6 +948,14 @@
             </div>
             <div class="subtitle">
               <p><span style="color:#3b82f6;">Advanced</span> Minecraft <span class="purple-text">cheat client</span> with <span color="#3b82f6">modern features</span> and <span style="color:white;">clean interface</span></p>
+            </div>
+            
+            <!-- Navigační indikátor -->
+            <div class="page-indicator" onclick="goToPage(1)">
+              <div class="page-number">
+                <span class="current">1</span><span class="total">/2</span>
+              </div>
+              <div class="page-arrow"></div>
             </div>
           </div>
         </div>
