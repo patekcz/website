@@ -191,7 +191,7 @@
       /* Horní pravý roh */
       .top-right {
         position: absolute;
-        top: 40px;
+        top: 90px; /* Zvýšeno z 40px na 80px pro posunutí níže */
         right: 40px;
         max-width: 300px;
         z-index: 10;
@@ -706,8 +706,12 @@
           if (pageIndex < 0 || pageIndex >= totalPages) return;
           
           currentPage = pageIndex;
-          const translateX = -pageIndex * 100;
-          pagesWrapper.style.transform = `translateX(${translateX}%)`;
+          // Calculate the actual width of one page, including the 10px gap
+          const pageElementWidth = document.querySelector('.page').offsetWidth;
+          const totalShiftPerIndex = pageElementWidth + 10; // Šířka stránky + mezera 10px
+          
+          const translateX = -pageIndex * totalShiftPerIndex;
+          pagesWrapper.style.transform = `translateX(${translateX}px)`; // Použijeme 'px' pro přesnější posun
           
           // Aktualizace navigačních tlačítek
           navButtons.forEach((btn, index) => {
@@ -739,6 +743,23 @@
           }
         });
         
+        // Navigace kolečkem myši
+        let wheelTimeout;
+        document.addEventListener('wheel', function(e) {
+          e.preventDefault(); // Zabraň standardnímu chování posouvání
+          
+          clearTimeout(wheelTimeout);
+          wheelTimeout = setTimeout(() => {
+            if (e.deltaY > 0) {
+              // Posouvání dolů nebo dopředu = další stránka
+              goToPage(Math.min(totalPages - 1, currentPage + 1));
+            } else if (e.deltaY < 0) {
+              // Posouvání nahoru nebo dozadu = předchozí stránka
+              goToPage(Math.max(0, currentPage - 1));
+            }
+          }, 200); // Debounce pro 200ms
+        }, { passive: false }); // Použij { passive: false } pro volání preventDefault()
+
         // Swipe navigace pro mobilní zařízení
         let startX = 0;
         let startY = 0;
@@ -932,8 +953,7 @@
             </div>
             
             <!-- Dekorativní prvky -->
-            <div class="decorative-piece piece-1"></div>
-            <div class="decorative-piece piece-2"></div>
+            
           </div>
         </div>
       </div>
