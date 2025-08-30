@@ -77,6 +77,7 @@
         display: flex;
         height: 100%;
         gap: 10px;
+        transition: transform 0.5s ease;
       }
       .page {
         width: calc(100vw - 20px);
@@ -94,6 +95,290 @@
         position: relative;
         user-select: none;
         overflow: hidden;
+      }
+      
+      /* Nová červená stránka */
+      .red-area {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+        position: relative;
+        user-select: none;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 40px;
+        box-sizing: border-box;
+      }
+      
+      /* Efekt přeloženého papíru */
+      .red-area::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%),
+          linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%);
+        background-size: 20px 20px;
+        pointer-events: none;
+      }
+      
+      /* Centrální PLAY text */
+      .play-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
+      }
+      
+      .play-text {
+        font-family: 'Anton', sans-serif;
+        font-size: 120px;
+        color: #ffe6e6;
+        font-weight: 400;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        line-height: 0.8;
+        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+        transform: rotate(-15deg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .play-text span {
+        display: block;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .play-text span:hover {
+        transform: scale(1.1);
+        text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+      }
+      
+      /* Horní levý roh */
+      .top-left {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        z-index: 10;
+      }
+      
+      .top-left-text {
+        font-family: 'Space Mono', monospace;
+        font-size: 14px;
+        color: #1e3a8a;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      
+      .top-left-text .highlight {
+        color: #3b82f6;
+      }
+      
+      /* Horní pravý roh */
+      .top-right {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        max-width: 300px;
+        z-index: 10;
+      }
+      
+      .top-right-text {
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        color: #f3f4f6;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      
+      .gaming-button {
+        background: white;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-family: 'Space Mono', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .gaming-button:hover {
+        background: #f3f4f6;
+        transform: translateY(-2px);
+      }
+      
+      .red-dot {
+        width: 8px;
+        height: 8px;
+        background: #ff0000;
+        border-radius: 50%;
+      }
+      
+      /* Spodní levý roh */
+      .bottom-left {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        z-index: 10;
+      }
+      
+      .game-card {
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      
+      .game-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+      
+      .game-icon {
+        width: 40px;
+        height: 40px;
+        background: #8b5cf6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-family: 'Space Mono', monospace;
+        font-size: 8px;
+        text-align: center;
+        line-height: 1.2;
+      }
+      
+      .game-info {
+        flex: 1;
+      }
+      
+      .game-name {
+        font-family: 'Space Mono', monospace;
+        font-size: 12px;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 2px;
+      }
+      
+      .game-price {
+        font-family: 'Space Mono', monospace;
+        font-size: 11px;
+        color: #666;
+      }
+      
+      .arrow-icon {
+        color: #666;
+        font-size: 16px;
+      }
+      
+      /* Spodní střed - paginace */
+      .pagination {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+      }
+      
+      .pagination-dot {
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      
+      .pagination-dot.active {
+        background: white;
+        transform: scale(1.2);
+      }
+      
+      /* Dekorativní prvky */
+      .decorative-piece {
+        position: absolute;
+        z-index: 5;
+      }
+      
+      .piece-1 {
+        top: 60px;
+        right: -20px;
+        width: 60px;
+        height: 40px;
+        background: white;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        transform: rotate(45deg);
+      }
+      
+      .piece-2 {
+        top: 50%;
+        right: 30px;
+        width: 30px;
+        height: 30px;
+        background: #ff0000;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      /* Navigační tlačítka */
+      .nav-buttons {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        gap: 10px;
+        z-index: 100;
+      }
+      
+      .nav-button {
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-family: 'Space Mono', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      
+      .nav-button:hover {
+        background: rgba(0, 0, 0, 0.9);
+        transform: translateY(-1px);
+      }
+      
+      .nav-button.active {
+        background: #ff6500;
       }
       .social-links {
         position: fixed;
@@ -410,6 +695,82 @@
           e.preventDefault();
         });
         
+        // Navigace mezi stránkami
+        let currentPage = 0;
+        const totalPages = 2;
+        const pagesWrapper = document.getElementById('pages-wrapper');
+        const navButtons = document.querySelectorAll('.nav-button');
+        const paginationDots = document.querySelectorAll('.pagination-dot');
+        
+        function goToPage(pageIndex) {
+          if (pageIndex < 0 || pageIndex >= totalPages) return;
+          
+          currentPage = pageIndex;
+          const translateX = -pageIndex * 100;
+          pagesWrapper.style.transform = `translateX(${translateX}%)`;
+          
+          // Aktualizace navigačních tlačítek
+          navButtons.forEach((btn, index) => {
+            btn.classList.toggle('active', index === pageIndex);
+          });
+          
+          // Aktualizace paginace
+          paginationDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === pageIndex);
+          });
+        }
+        
+        // Event listeners pro navigační tlačítka
+        navButtons.forEach((button, index) => {
+          button.addEventListener('click', () => goToPage(index));
+        });
+        
+        // Event listeners pro paginaci
+        paginationDots.forEach((dot, index) => {
+          dot.addEventListener('click', () => goToPage(index));
+        });
+        
+        // Klávesová navigace
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            goToPage(Math.max(0, currentPage - 1));
+          } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            goToPage(Math.min(totalPages - 1, currentPage + 1));
+          }
+        });
+        
+        // Swipe navigace pro mobilní zařízení
+        let startX = 0;
+        let startY = 0;
+        
+        document.addEventListener('touchstart', function(e) {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+        });
+        
+        document.addEventListener('touchend', function(e) {
+          if (!startX || !startY) return;
+          
+          const endX = e.changedTouches[0].clientX;
+          const endY = e.changedTouches[0].clientY;
+          const diffX = startX - endX;
+          const diffY = startY - endY;
+          
+          // Minimální vzdálenost pro swipe
+          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+            if (diffX > 0) {
+              // Swipe vlevo - další stránka
+              goToPage(Math.min(totalPages - 1, currentPage + 1));
+            } else {
+              // Swipe vpravo - předchozí stránka
+              goToPage(Math.max(0, currentPage - 1));
+            }
+          }
+          
+          startX = 0;
+          startY = 0;
+        });
+        
         // Cookie banner funkcionalita
         const cookieBanner = document.getElementById('cookie-banner');
         const acceptButton = document.getElementById('accept-cookies');
@@ -496,7 +857,8 @@
         <a href="https://github.com/patekcz" target="_blank" rel="me noopener noreferrer">GitHub</a>
         <a href="https://ko-fi.com/patek_cz" target="_blank" rel="noopener noreferrer">Support</a>
       </div>
-      <div class="pages-wrapper" style="transform: translateX(0%)">
+      <div class="pages-wrapper" id="pages-wrapper" style="transform: translateX(0%)">
+        <!-- První stránka - Raven Reloaded -->
         <div class="page">
           <div class="black-area">
             <div class="logo-container">
@@ -507,11 +869,79 @@
                   <span>RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span class="purple-text">RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span class="purple-text">RAVEN RELOADED</span> <span>RAVEN RELOADED</span><br>
                   <span>RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span class="purple-text">RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span>RAVEN RELOADED</span> <span class="purple-text">RAVEN RELOADED</span>
                 </div>
-                <!-- Odebrán subtitle -->
               </div>
+            </div>
+            
+            <!-- Paginace pro první stránku -->
+            <div class="pagination">
+              <div class="pagination-dot active" data-page="0"></div>
+              <div class="pagination-dot" data-page="1"></div>
             </div>
           </div>
         </div>
+        
+        <!-- Druhá stránka - Červená herní stránka -->
+        <div class="page">
+          <div class="red-area">
+            <!-- Horní levý roh -->
+            <div class="top-left">
+              <div class="top-left-text">
+                SHOP, <span class="highlight">PLAY</span> AND ENJOY AT RANDOLPH
+              </div>
+            </div>
+            
+            <!-- Horní pravý roh -->
+            <div class="top-right">
+              <div class="top-right-text">
+                Fun, laughs, and good times win at Randolph pubs, where everyone's a player and friends connect over great food, drink and those perfect games. Another round?
+              </div>
+              <button class="gaming-button">
+                Gaming pubs
+                <div class="red-dot"></div>
+              </button>
+            </div>
+            
+            <!-- Centrální PLAY text -->
+            <div class="play-container">
+              <div class="play-text">
+                <span>P</span>
+                <span>L</span>
+                <span>A</span>
+                <span>Y</span>
+              </div>
+            </div>
+            
+            <!-- Spodní levý roh -->
+            <div class="bottom-left">
+              <div class="game-card">
+                <div class="game-icon">
+                  ABSTRACT<br>&<br>BRAINSTORM
+                </div>
+                <div class="game-info">
+                  <div class="game-name">Jenga Classic</div>
+                  <div class="game-price">$24.99</div>
+                </div>
+                <div class="arrow-icon">→</div>
+              </div>
+            </div>
+            
+            <!-- Spodní střed - paginace -->
+            <div class="pagination">
+              <div class="pagination-dot active" data-page="0"></div>
+              <div class="pagination-dot" data-page="1"></div>
+            </div>
+            
+            <!-- Dekorativní prvky -->
+            <div class="decorative-piece piece-1"></div>
+            <div class="decorative-piece piece-2"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Navigační tlačítka -->
+      <div class="nav-buttons">
+        <button class="nav-button active" data-page="0">Raven</button>
+        <button class="nav-button" data-page="1">Play</button>
       </div>
     </div>
     
