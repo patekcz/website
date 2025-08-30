@@ -1,5 +1,18 @@
 User-agent: *
 Allow: /
 
+# Specifické direktivy pro Raven Reloaded
+Allow: /ravenreloaded
+Allow: /ravenreloaded.html
+
+# Zabraň indexování technických souborů
+Disallow: /icons/
+Disallow: /CNAME
+Disallow: /robots.txt
+Disallow: /sitemap.xml
+
+# Crawl delay pro respektování serveru
+Crawl-delay: 1
+
 Sitemap: https://zpatkyvpatky.xyz/sitemap.xml
 
