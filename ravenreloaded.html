@@ -297,30 +297,7 @@
         font-size: 16px;
       }
       
-      /* Spodní střed - paginace */
-      .pagination {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 8px;
-        z-index: 10;
-      }
-      
-      .pagination-dot {
-        width: 8px;
-        height: 8px;
-        background: rgba(255, 255, 255, 0.6);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-      
-      .pagination-dot.active {
-        background: white;
-        transform: scale(1.2);
-      }
+
       
       /* Dekorativní prvky */
       .decorative-piece {
@@ -700,7 +677,6 @@
         const totalPages = 2;
         const pagesWrapper = document.getElementById('pages-wrapper');
         const navButtons = document.querySelectorAll('.nav-button');
-        const paginationDots = document.querySelectorAll('.pagination-dot');
         
         function goToPage(pageIndex) {
           if (pageIndex < 0 || pageIndex >= totalPages) return;
@@ -717,21 +693,11 @@
           navButtons.forEach((btn, index) => {
             btn.classList.toggle('active', index === pageIndex);
           });
-          
-          // Aktualizace paginace
-          paginationDots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === pageIndex);
-          });
         }
         
         // Event listeners pro navigační tlačítka
         navButtons.forEach((button, index) => {
           button.addEventListener('click', () => goToPage(index));
-        });
-        
-        // Event listeners pro paginaci
-        paginationDots.forEach((dot, index) => {
-          dot.addEventListener('click', () => goToPage(index));
         });
         
         // Klávesová navigace
@@ -892,12 +858,6 @@
                 </div>
               </div>
             </div>
-            
-            <!-- Paginace pro první stránku -->
-            <div class="pagination">
-              <div class="pagination-dot active" data-page="0"></div>
-              <div class="pagination-dot" data-page="1"></div>
-            </div>
           </div>
         </div>
         
@@ -944,12 +904,6 @@
                 </div>
                 <div class="arrow-icon">→</div>
               </div>
-            </div>
-            
-            <!-- Spodní střed - paginace -->
-            <div class="pagination">
-              <div class="pagination-dot active" data-page="0"></div>
-              <div class="pagination-dot" data-page="1"></div>
             </div>
             
             <!-- Dekorativní prvky -->
