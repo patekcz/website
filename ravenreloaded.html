@@ -27,6 +27,28 @@
     <link rel="alternate" href="https://zpatkyvpatky.xyz/ravenreloaded" hreflang="en">
     <link rel="alternate" href="https://zpatkyvpatky.xyz/ravenreloaded" hreflang="x-default">
     <meta http-equiv="content-language" content="en">
+    
+    <!-- Preconnect pro Google Fonts - optimalizace pro rychlejší načítání -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload kritických fontů pro eliminaci layout shifts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono&display=swap"></noscript>
+    
+    <!-- Fallback fonty pro eliminaci CLS -->
+    <style>
+      /* Fallback fonty pro eliminaci layout shifts */
+      .font-fallback {
+        font-family: 'Anton', 'Arial Black', 'Helvetica Bold', sans-serif;
+        font-display: swap;
+      }
+      .font-fallback-mono {
+        font-family: 'Space Mono', 'Courier New', monospace;
+        font-display: swap;
+      }
+    </style>
+
     <!-- Meta tagy pro sociální sítě -->
     <meta property="og:title" content="Raven Reloaded | Advanced Minecraft Client">
     <meta property="og:description" content="Advanced Minecraft cheat client with modern features, clean interface, and powerful capabilities for enhanced gameplay.">
@@ -51,11 +73,6 @@
     <meta name="twitter:description" content="Advanced Minecraft cheat client with modern features and clean interface.">
     <meta name="twitter:image" content="https://zpatkyvpatky.xyz/ravenreloaded.png">
     <meta name="twitter:image:alt" content="Raven Reloaded - Advanced Minecraft Cheat Client">
-    
-    <!-- Google Fonts: Space Mono a Anton -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono&display=swap" rel="stylesheet">
 
     <title>Raven Reloaded | Advanced Cheat Client</title>
     <style>
@@ -147,7 +164,7 @@
       }
       
       .play-text {
-        font-family: 'Anton', sans-serif;
+        font-family: 'Anton', 'Arial Black', 'Helvetica Bold', sans-serif;
         font-size: 120px;
         color: #ffe6e6;
         font-weight: 400;
@@ -159,6 +176,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        font-display: swap;
       }
       
       .play-text span {
@@ -181,12 +199,13 @@
       }
       
       .top-left-text {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 20px;
         color: #ffffff;
         font-weight: 600;
         letter-spacing: 1px;
         text-transform: uppercase;
+        font-display: swap;
       }
       
       .top-left-text .highlight {
@@ -196,18 +215,19 @@
       /* Horní pravý roh */
       .top-right {
         position: absolute;
-        top: 90px; /* Zvýšeno z 40px na 80px pro posunutí níže */
+        top: 90px;
         right: 40px;
         max-width: 300px;
         z-index: 10;
       }
       
       .top-right-text {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 12px;
         color: #f3f4f6;
         line-height: 1.6;
         margin-bottom: 20px;
+        font-display: swap;
       }
       
       .gaming-button {
@@ -216,7 +236,7 @@
         border: none;
         padding: 10px 20px;
         border-radius: 8px;
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -225,6 +245,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        font-display: swap;
       }
       
       .gaming-button:hover {
@@ -273,10 +294,11 @@
         align-items: center;
         justify-content: center;
         color: white;
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 8px;
         text-align: center;
         line-height: 1.2;
+        font-display: swap;
       }
       
       .game-info {
@@ -284,25 +306,25 @@
       }
       
       .game-name {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 12px;
         font-weight: 600;
         color: black;
         margin-bottom: 2px;
+        font-display: swap;
       }
       
       .game-price {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 11px;
         color: #666;
+        font-display: swap;
       }
       
       .arrow-icon {
         color: #666;
         font-size: 16px;
       }
-      
-
       
       /* Dekorativní prvky */
       .decorative-piece {
@@ -346,12 +368,13 @@
         border: none;
         padding: 8px 12px;
         border-radius: 6px;
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 10px;
         text-transform: uppercase;
         letter-spacing: 1px;
         cursor: pointer;
         transition: all 0.2s ease;
+        font-display: swap;
       }
       
       .nav-button:hover {
@@ -372,7 +395,7 @@
         right: 30px;
       }
       .social-links a {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 12px;
         line-height: normal;
         font-weight: 400;
@@ -381,6 +404,7 @@
         text-transform: uppercase;
         color: #E8E6E3;
         transition: color 0.2s ease, text-shadow 0.3s ease;
+        font-display: swap;
       }
       .social-links a:hover {
         color: #ffffff;
@@ -392,7 +416,7 @@
         z-index: 50;
       }
       .back-link a {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 12px;
         line-height: normal;
         font-weight: 400;
@@ -401,6 +425,7 @@
         text-transform: uppercase;
         color: #E8E6E3;
         transition: color 0.2s ease, text-shadow 0.3s ease;
+        font-display: swap;
       }
       .back-link a:hover {
         color: #ffffff;
@@ -434,27 +459,29 @@
         color: #ffffff;
       }
       .item-name {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 12px;
         color: rgba(255, 255, 255, 0.9);
         font-weight: 400;
         letter-spacing: 0.3px;
         white-space: nowrap;
         transition: color 0.2s ease;
+        font-display: swap;
       }
       .item-lore {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 12px;
         color: rgba(255, 255, 255, 0.6);
         text-align: right;
         letter-spacing: 0.3px;
         min-width: 45px;
         white-space: nowrap;
+        font-display: swap;
       }
       /* Logo styly */
       .logo-container {
         position: absolute;
-        top: 30%; /* Změněno z 20% na 35% pro posunutí loga níže */
+        top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
@@ -472,7 +499,7 @@
         width: 100%;
       }
       .repeating-text {
-        font-family: 'Anton', sans-serif;
+        font-family: 'Anton', 'Arial Black', 'Helvetica Bold', sans-serif;
         font-size: 120px;
         color: #E0E0E0;
         font-weight: 400;
@@ -488,6 +515,7 @@
         transform: rotate(-5deg) translateX(-50%);
         line-height: 0.8;
         text-align: center;
+        font-display: swap;
       }
       .repeating-text span {
         display: inline-block;
@@ -513,7 +541,7 @@
         position: relative;
       }
       .tagline {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 16px;
         color: rgba(255, 255, 255, 0.8);
         text-transform: uppercase;
@@ -522,6 +550,7 @@
         text-align: center;
         font-weight: 500;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-display: swap;
       }
       /* Skrytý text pro přístupnost a SEO (nenaruší vzhled) */
       .visually-hidden {
@@ -590,12 +619,13 @@
         position: fixed;
         bottom: 30px;
         right: 30px;
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
         z-index: 1000;
         transform: translateY(100px);
         opacity: 0;
         transition: all 0.4s ease;
+        font-display: swap;
       }
       .cookie-banner.show {
         transform: translateY(0);
@@ -628,11 +658,12 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 9px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         transition: all 0.2s ease;
+        font-display: swap;
       }
       .accept {
         background-color: #ffffff;
@@ -671,14 +702,14 @@
       }
 
       .subtitle {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 12px;
         color: rgba(255, 255, 255, 0.8);
         text-transform: uppercase;
         letter-spacing: 3px;
         text-align: center;
         margin-top: 700px;
-       
+        font-display: swap;
       }
       
       /* Navigační indikátor pro více stránek */
@@ -699,11 +730,12 @@
       }
       
       .page-number {
-        font-family: 'Space Mono', monospace;
+        font-family: 'Space Mono', 'Courier New', monospace;
         font-size: 14px;
         color: rgba(255, 255, 255, 0.7);
         font-weight: 600;
         letter-spacing: 1px;
+        font-display: swap;
       }
       
       .page-number .current {
