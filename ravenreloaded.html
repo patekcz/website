@@ -825,6 +825,12 @@
           button.addEventListener('click', () => goToPage(index));
         });
         
+        // Event listener pro page-indicator
+        const pageIndicator = document.querySelector('.page-indicator');
+        if (pageIndicator) {
+          pageIndicator.addEventListener('click', () => goToPage(1));
+        }
+        
         // Klávesová navigace
         document.addEventListener('keydown', function(e) {
           if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
@@ -988,7 +994,7 @@
             </div>
             
             <!-- Navigační indikátor -->
-            <div class="page-indicator" onclick="goToPage(1)">
+            <div class="page-indicator">
               <div class="page-number">
                 <span class="current">1</span><span class="total">/2</span>
               </div>
